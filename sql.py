@@ -1,19 +1,33 @@
-import sqlite3
+import os
 
+
+#import sqlite3
+
+
+import psycopg2
+version = 'postgres'
+DATABASE_URL = os.environ['DATABASE_URL']	
+
+def my_connect():
+	if version == 'postgres':
+		return psycopg2.connect(DATABASE_URL, sslmode='require')
+	elif version == 'sqlite':
+		return sqlite3.connect('info.db')
+	raise "unknown DB"
 
 def create_table():
-	conn = sqlite3.connect('info.db')
+	conn = sql_lib.connect('info.db')
 	c = conn.cursor()
 	c.execute('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, password TEXT);')
 	c.execute('CREATE TABLE IF NOT EXISTS tokens (tokenid INTEGER PRIMARY KEY, userid INTEGER, dropbox_access_token TEXT, url_token TEXT, title TEXT, description TEXT);')
 	conn.commit()
 	c.close()
 	conn.close()
-create_table() # only need to call it once
+#create_table() # only need to call it once
 
 
 def insert_user(username, password):
-	conn = sqlite3.connect('info.db')
+	conn = sql_lib.connect('info.db')
 	c = conn.cursor()
 	c.execute('INSERT INTO users (name, password) VALUES (?, ?);', (username, password))
 	conn.commit()
@@ -22,7 +36,7 @@ def insert_user(username, password):
 
 
 def insert_token(userid, dropbox_access_token, url_token, title, description):
-	conn = sqlite3.connect('info.db')
+	conn = sql_lib.connect('info.db')
 	c = conn.cursor()
 	c.execute('INSERT INTO tokens (userid, dropbox_access_token, url_token, title, description) VALUES (?, ?, ?, ?, ?);', (userid, dropbox_access_token, url_token, title, description))
 	conn.commit()
@@ -31,7 +45,7 @@ def insert_token(userid, dropbox_access_token, url_token, title, description):
 
 
 def get_the_userID(username):
-	conn = sqlite3.connect('info.db')
+	conn = sql_lib.connect('info.db')
 	c = conn.cursor()
 	c.execute("SELECT id FROM users where name = ?", (username,))
 	data = c.fetchone()	
@@ -42,7 +56,7 @@ def get_the_userID(username):
 
 
 def check_password(username):
-	conn = sqlite3.connect('info.db')
+	conn = sql_lib.connect('info.db')
 	c = conn.cursor()
 	c.execute("SELECT password FROM users where name = ?", (username,))
 	data = c.fetchone()	
@@ -53,7 +67,7 @@ def check_password(username):
 
 
 def get_the_latest_token_info(url_token):
-	conn = sqlite3.connect('info.db')
+	conn = sql_lib.connect('info.db')
 	c = conn.cursor()
 	c.execute("SELECT dropbox_access_token, title, description FROM tokens where url_token = ?", (url_token,))
 	data = c.fetchone()	
@@ -63,7 +77,7 @@ def get_the_latest_token_info(url_token):
 	return data
 
 def get_the_user_info(userID):
-	conn = sqlite3.connect('info.db')
+	conn = sql_lib.connect('info.db')
 	c = conn.cursor()
 	c.execute("SELECT title, description, url_token FROM tokens where userID = ? ORDER BY tokenid ASC", (userID,))
 	data = c.fetchall()	
