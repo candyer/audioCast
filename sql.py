@@ -27,7 +27,7 @@ def create_table():
 
 
 def insert_user(username, password):
-	conn = sql_lib.connect('info.db')
+	conn = my_connect()
 	c = conn.cursor()
 	c.execute('INSERT INTO users (name, password) VALUES (?, ?);', (username, password))
 	conn.commit()
@@ -36,7 +36,7 @@ def insert_user(username, password):
 
 
 def insert_token(userid, dropbox_access_token, url_token, title, description):
-	conn = sql_lib.connect('info.db')
+	conn = my_connect()
 	c = conn.cursor()
 	c.execute('INSERT INTO tokens (userid, dropbox_access_token, url_token, title, description) VALUES (?, ?, ?, ?, ?);', (userid, dropbox_access_token, url_token, title, description))
 	conn.commit()
@@ -45,7 +45,7 @@ def insert_token(userid, dropbox_access_token, url_token, title, description):
 
 
 def get_the_userID(username):
-	conn = sql_lib.connect('info.db')
+	conn = my_connect()
 	c = conn.cursor()
 	c.execute("SELECT id FROM users where name = ?", (username,))
 	data = c.fetchone()	
@@ -56,7 +56,7 @@ def get_the_userID(username):
 
 
 def check_password(username):
-	conn = sql_lib.connect('info.db')
+	conn = my_connect()
 	c = conn.cursor()
 	c.execute("SELECT password FROM users where name = ?", (username,))
 	data = c.fetchone()	
@@ -67,7 +67,7 @@ def check_password(username):
 
 
 def get_the_latest_token_info(url_token):
-	conn = sql_lib.connect('info.db')
+	conn = my_connect()
 	c = conn.cursor()
 	c.execute("SELECT dropbox_access_token, title, description FROM tokens where url_token = ?", (url_token,))
 	data = c.fetchone()	
@@ -77,7 +77,7 @@ def get_the_latest_token_info(url_token):
 	return data
 
 def get_the_user_info(userID):
-	conn = sql_lib.connect('info.db')
+	conn = my_connect()
 	c = conn.cursor()
 	c.execute("SELECT title, description, url_token FROM tokens where userID = ? ORDER BY tokenid ASC", (userID,))
 	data = c.fetchall()	
