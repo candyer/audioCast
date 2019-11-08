@@ -18,7 +18,7 @@ app.secret_key = 'y\x9b+\xcb\x9f\n\x8d+\x7fp\x9b7\xbfc3y\xfe\x80*\x04\xd2/\xea\x
 
 @app.route('/x', methods=['GET'])
 def int():
-	sql.create_table()
+	create_table()
 	return 'done'
 
 # login required decorator 
