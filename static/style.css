@@ -1,0 +1,132 @@
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	padding: 20px;
+}
+
+.howto {
+	border: 1px solid green;
+	border-radius: 25px;
+	display: none;
+	margin: 10px;
+}
+
+.token {
+	display: block;
+}
+
+/*.title {
+	z-index: 0;
+}*/
+
+/*.title {
+	display: none;
+}
+
+.description {
+	display: none;
+}*/
+
+/*.title {
+	overflow: scroll;
+}
+
+.description {
+	overflow: scroll;
+}*/
+
+nav {
+	text-align: center;
+	margin-top: 1%;
+	margin-bottom: 2%;
+}
+
+
+input[type=text], input[type=password] {
+	width: 100%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	display: inline-block;
+	border: none;
+	background: #eee;
+	border-radius: 25px;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+	background-color: #ccc;
+	outline: none;
+}
+
+.btn {
+	background-color: green;
+	color: white;
+	padding: 16px 20px;
+	margin: 8px 0;
+	border: none;
+	width: 100%;
+	opacity: 0.8;
+	border-radius: 25px;
+	outline: none;
+}
+
+.registerbtn:hover {
+	opacity: 1;
+}
+
+.error {
+	color: red;
+}
+
+
+.logged_user {
+	color: salmon;
+	font-weight: bold;
+}
+
+li {
+	margin: 10px;
+	padding: 5px;
+}
+
+.question_mark {
+	height: 30px;
+}
+.instrudtion {
+	width: 600px;
+}
+
+.next { 
+	height: 40px;
+	display:block;
+	margin:auto;
+ }
+
+.res_page {
+	text-align: center;
+}
+
+table, td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.qrcode {
+	height: 70px;
+	margin-bottom: -5px;
+	transition: transform 0.5s ease-in-out;
+}
+
+.qrcode:hover {
+	transform: scale(3);
+}
+
+
+
+
+
+
+
+
+

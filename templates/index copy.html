@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Rss | Audio-Cast</title>
+	<link rel="stylesheet" href="static/style.css">
+	<nav> 
+		<a href="/">Home</a> |
+		{% if not session['logged_in'] %}
+			<a href="/login">Login</a> |
+			<a href="/register">Register</a> |
+		{% endif %}
+		{% if session['logged_in'] %}
+			<a href="/logout">Logout</a> |
+			<a href="/user" class='logged_user'>{{session['username'].title()}}</a>
+		{% endif %}    
+	</nav>
+</head>
+<body>
+	<form method='POST'>
+		
+		<div class="container">
+			<div class="token">
+				<label for="token"><b>Access Token</b></label>
+				<img src="static/question_mark1.png" class='question_mark' onclick="showInstruction()">
+				<input type="text" placeholder="Enter Access Token" name="token" required>
+				<button class="btn"  onclick="goTitle()">Next</button>
+
+				<div class='howto'>
+					<li>Create a <a href="https://www.dropbox.com/">Dropbox</a> account.</li>
+					<li>Go to <a href="https://www.dropbox.com/developers/apps/" target="_blank">Dropbox App Console</a></li>
+					<li>Click the <b>Create app</b> button on top right.</li>
+					<li><img src="static/create_new_app_on_dbx_platform.png" class='instrudtion'></li>
+					<li>Then you will be redirected to the control panel for your app. In the middle of the page, click <b>Generate</b> to get the <b>Access Token</b>.</li>					
+				</div>		
+			</div>
+			
+			<div class="title">
+				<label for="title"><b>Title</b></label>
+				<input type="text" placeholder="Enter Title of the audio" name="title" required>
+				<button class="btn"  onclick="goDescription()">Next</button>
+			</div>
+			
+			<div class="description">			
+				<label for="description"><b>Description</b></label>
+				<input type="text" placeholder="Enter A Short Description of audio" name="description" required>	
+				<button class="btn">Publish</button>
+			</div>
+
+		</div>
+		{% for message in get_flashed_messages() %}
+			{{ message }}
+		{% endfor %}
+	</form>
+	<script src='static/main.js'></script>
+</body>
+</html>
+
