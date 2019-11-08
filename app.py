@@ -33,7 +33,7 @@ def login_required(f):
 @login_required
 def home():
 	'''https://podgen.readthedocs.io/en/latest/'''
-	print '--------------->', session 
+
 	if request.method == 'POST':
 		dropbox_access_token = request.form['token']
 		title = request.form['title']
@@ -43,7 +43,6 @@ def home():
 		userID = get_the_userID(session['username'])[0]
 
 		link = 'http://audio-cast.herokuapp.com/rss/{}'.format(url_token)
-		print '', link
 		qr = qrcode.QRCode( version=1,  box_size=10, border=4)
 		qr.add_data(link)
 		qr.make(fit=True)
@@ -109,7 +108,6 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-	# print '--------------->', session
 	if 'logged_in' in session and session['logged_in']:
 		redirect(url_for('home'))
 	error = None
