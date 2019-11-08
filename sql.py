@@ -16,7 +16,7 @@ def my_connect():
 	raise "unknown DB"
 
 def create_table():
-	conn = sql_lib.connect('info.db')
+	conn = my_connect()
 	c = conn.cursor()
 	c.execute('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, password TEXT);')
 	c.execute('CREATE TABLE IF NOT EXISTS tokens (tokenid INTEGER PRIMARY KEY, userid INTEGER, dropbox_access_token TEXT, url_token TEXT, title TEXT, description TEXT);')
