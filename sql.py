@@ -20,7 +20,7 @@ def create_table():
 	conn.commit()
 	c.close()
 	conn.close()
-#create_table() # only need to call it once
+# create_table() # only need to call it once
 
 
 def insert_user(username, password):
@@ -46,13 +46,14 @@ def get_the_userID(username):
 	c = conn.cursor()
 	#c.execute("SELECT * FROM users")
 	c.execute("SELECT id FROM users where name = %s", (username,))
+	print('data1:', data)
 	data = c.fetchone()
-	print('data:', data)
+	print('data2:', data)
 	conn.commit()
 	c.close()
 	conn.close()
 	return data
-
+print get_the_userID('candy')
 
 def check_password(username):
 	conn = my_connect()
