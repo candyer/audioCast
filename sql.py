@@ -1,10 +1,6 @@
 import os
-
-
-#import sqlite3
-
-
 import psycopg2
+
 version = 'postgres'
 DATABASE_URL = os.environ['DATABASE_URL']	
 

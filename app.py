@@ -45,7 +45,7 @@ def home():
 		dropbox_access_token = request.form['token']
 		title = request.form['title']
 		description = request.form['description']
-		url_token = base64.b64encode(os.urandom(5), 'ab').strip('=') # replace '+/' with 'ab', and trim '=' from head and tail.
+		url_token = base64.b64encode(os.urandom(5), b'ab').strip(b'=') # replace '+/' with 'ab', and trim '=' from head and tail.
 
 		userID = get_the_userID(session['username'])[0]
 

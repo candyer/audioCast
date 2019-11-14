@@ -8,7 +8,7 @@
 		<a href="/">Home</a> |
 		{% if not session['logged_in'] %}
 			<a href="/login">Login</a> |
-			<a href="/register">Register</a> |
+			<a href="/register">Register</a>
 		{% endif %}
 		{% if session['logged_in'] %}
 			<a href="/logout">Logout</a> |
@@ -20,9 +20,6 @@
 	
 	<form method='POST'>
 		<div class="container">
-<!-- 			<p>Please fill in this form to create an account.</p>
-			<hr> -->
-
 			<label for="username"><b>Username</b></label>
 			<input type="text" placeholder="Enter Username" name="username" required>
 
@@ -50,7 +47,6 @@
 
 </body>
 </html>
-
 
 
 
