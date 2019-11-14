@@ -45,11 +45,11 @@ def home():
 		dropbox_access_token = request.form['token']
 		title = request.form['title']
 		description = request.form['description']
-		url_token = base64.b64encode(os.urandom(5), b'ab').strip(b'=') # replace '+/' with 'ab', and trim '=' from head and tail.
+		url_token = base64.b64encode(os.urandom(5), b'ab').strip(b'=').decode("utf-8") # replace '+/' with 'ab', and trim '=' from head and tail.
 
 		userID = get_the_userID(session['username'])[0]
 
-		link = 'http://pacific-plateau-42582.herokuapp.com/rss/{}'.format(url_token).decode("utf-8")
+		link = 'http://pacific-plateau-42582.herokuapp.com/rss/{}'.format(url_token)
 		print link
 		qr = qrcode.QRCode( version=1,  box_size=10, border=4)
 		qr.add_data(link)
