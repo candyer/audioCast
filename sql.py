@@ -46,14 +46,13 @@ def get_the_userID(username):
 	c = conn.cursor()
 	#c.execute("SELECT * FROM users")
 	c.execute("SELECT id FROM users where name = %s", (username,))
-	print('data1:', data)
 	data = c.fetchone()
-	print('data2:', data)
+	# print('data:', data)
 	conn.commit()
 	c.close()
 	conn.close()
 	return data
-print get_the_userID('candy')
+
 
 def check_password(username):
 	conn = my_connect()
