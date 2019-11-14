@@ -49,7 +49,8 @@ def home():
 
 		userID = get_the_userID(session['username'])[0]
 
-		link = 'http://audio-cast.herokuapp.com/rss/{}'.format(url_token)
+		link = 'http://pacific-plateau-42582.herokuapp.com/rss/{}'.format(url_token).decode("utf-8")
+		print link
 		qr = qrcode.QRCode( version=1,  box_size=10, border=4)
 		qr.add_data(link)
 		qr.make(fit=True)
