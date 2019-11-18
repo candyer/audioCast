@@ -26,7 +26,6 @@ def int():
 # login required decorator 
 def login_required(f):
 	@wraps(f)
-
 	def wrap(*args, **kwargs):
 		if 'logged_in' in session:
 			return f(*args, **kwargs)
@@ -40,7 +39,6 @@ def login_required(f):
 @login_required
 def home():
 	'''https://podgen.readthedocs.io/en/latest/'''
-
 	if request.method == 'POST':
 		dropbox_access_token = request.form['token']
 		title = request.form['title']
@@ -50,7 +48,7 @@ def home():
 		userID = get_the_userID(session['username'])[0]
 
 		link = 'http://pacific-plateau-42582.herokuapp.com/rss/{}'.format(url_token)
-		qr = qrcode.QRCode( version=1,  box_size=10, border=4)
+		qr = qrcode.QRCode(version=1, box_size=10, border=4)
 		qr.add_data(link)
 		qr.make(fit=True)
 		img = qr.make_image(fill='black', back_color='RGB(52, 235, 222)')
@@ -64,7 +62,6 @@ def home():
 
 
 @app.route('/rss/<url_token>')
-@login_required
 def rss(url_token):
 	dropbox_access_token, title, description = get_the_latest_token_info(url_token)
 	urls = get_temporary_link(dropbox_access_token)
@@ -115,6 +112,7 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+	print('session', session)
 	if 'logged_in' in session and session['logged_in']:
 		redirect(url_for('home'))
 	error = None

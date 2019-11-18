@@ -27,14 +27,14 @@
 					<th>Link</th>
 					<th>QR code</th>
 				</tr>
-				{% for title, description, url_token in infos %}
+				{% for title, description, url_token, qrcode in infos %}
 					<tr>
 						<td>{{ title }}</td>
 						<td>{{ description }}</td>
 						<td>http://audio-cast.herokuapp.com/rss/{{url_token}}</td>
 						
 						<td>
-							<img class='qrcode' src='static/{{url_token}}.png' alt='http://pacific-plateau-42582.herokuapp.com/rss/{{url_token}}'>
+							<img class='qrcode' src='data:image/jpeg;base64,{{qrcode}}' alt='http://pacific-plateau-42582.herokuapp.com/rss/{{url_token}}'>
 						</td>
 					</tr>
 				{% endfor %}
