@@ -54,8 +54,11 @@ def home():
 		img = qr.make_image(fill='black', back_color='RGB(52, 235, 222)')
 		name = '{}.png'.format(url_token)
 		img.save('static/{}'.format(name))
+		qrcode_info = ''
+		with open(name, "rb") as imageFile:
+			qrcode_info = base64.b64encode(imageFile.read())
 
-		insert_token(userID, dropbox_access_token, url_token, title, description)
+		insert_token(userID, dropbox_access_token, url_token, title, description, qrcode_info)
 
 		return render_template('rss.html', url_token=url_token)
 	return render_template('index.html')
@@ -182,27 +185,5 @@ def get_temporary_link(access_token):
 
 if  __name__ == '__main__':
 	app.run(host='0.0.0.0', port=os.environ.get('PORT'), debug=True)
-
-
-
-# @app.route('/rss/<userID>/<tokenID>')
-# @login_required
-# def rss(userID, tokenID):
-# 	tokenid, dropbox_access_token, title, description = get_the_latest_token_info(userID, tokenID)[0]
-# 	urls = get_temporary_link(dropbox_access_token)
-# 	p = Podcast()
-# 	p.name = title
-# 	p.description = description
-# 	p.website = "https://www.google.com"
-# 	p.explicit = True	
-
-# 	for i, (size, url, uid, name) in enumerate(urls):
-# 		my_episode = Episode()
-# 		my_episode.title = os.path.splitext(name)[0]
-# 		my_episode.id = uid
-# 		my_episode.media = Media(url, size=size, type="audio/mpeg")
-# 		p.episodes.append(my_episode)
-# 	return Response(str(p), mimetype='text/xml')
-
 
 
