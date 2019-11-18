@@ -22,7 +22,7 @@ def create_table():
 												  url_token TEXT, \
 												  title TEXT, \
 												  description TEXT, \
-												  qrcode BLOB);')
+												  qrcode TEXT);')
 	conn.commit()
 	c.close()
 	conn.close()
