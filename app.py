@@ -55,7 +55,7 @@ def home():
 		name = '{}.png'.format(url_token)
 		img.save('static/{}'.format(name))
 		qrcode_info = ''
-		with open(name, "rb") as imageFile:
+		with open('static/{}'.format(name), "rb") as imageFile:
 			qrcode_info = base64.b64encode(imageFile.read())
 
 		insert_token(userID, dropbox_access_token, url_token, title, description, qrcode_info)
