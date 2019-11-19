@@ -17,26 +17,6 @@
 	display: block;
 }
 
-/*.title {
-	z-index: 0;
-}*/
-
-/*.title {
-	display: none;
-}
-
-.description {
-	display: none;
-}*/
-
-/*.title {
-	overflow: scroll;
-}
-
-.description {
-	overflow: scroll;
-}*/
-
 nav {
 	text-align: center;
 	margin-top: 1%;
@@ -78,7 +58,6 @@ input[type=text]:focus, input[type=password]:focus {
 .error {
 	color: red;
 }
-
 
 .logged_user {
 	color: salmon;
