@@ -10,3 +10,4 @@ pip install qrcode
 pip install Pillow  
 pip install psycopg2-binary==2.8.3  
 
+[Demo Link](http://pacific-plateau-42582.herokuapp.com/)
